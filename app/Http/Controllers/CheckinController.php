@@ -33,13 +33,15 @@ class CheckinController extends Controller
             }
         }
 
+        $result = [];
         $users = DB::table('users')
-            ->where('checkin', 1)
-            ->select('id')
-            ->get()
-            ->pluck('id');
-        Cache::add(CheckinController::CACHE_KEY, $users, 5);
-        return $users;
+            ->select('id', 'checkin')
+            ->get();
+        foreach ($users as $user) {
+            $result[$user->id] = $user->checkin;
+        }
+        Cache::add(CheckinController::CACHE_KEY, $result, 5);
+        return $result;
     }
 
 
