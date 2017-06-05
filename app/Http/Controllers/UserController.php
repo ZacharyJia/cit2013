@@ -11,9 +11,9 @@ class UserController extends Controller
         if ($id != null) {
             $user = User::find($id);
             if ($user != null) {
-                return redirect('/user.html?id=' . $user->id . '&name=' . $user->name);
+                return redirect('/mobile/user.html?id=' . $user->id . '&name=' . $user->name);
             }
         }
-        return redirect('/user.html');
+        return redirect('/mobile/user.html');
     }
 }

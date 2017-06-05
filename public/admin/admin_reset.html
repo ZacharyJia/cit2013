@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CIT</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var baseurl = "http://localhost/ajax1.php";
+            $("#b1").click(function () {
+                if (confirm('Are you sure?')) {
+                    $.post(baseurl, {'all': ''}, function (json) {
+                        alert((json).status);
+                    });
+                }
+            });
+            $("#b2").click(function () {
+                if (confirm('Are you sure?')) {
+                    $.post(baseurl, {'reset': ''}, function (json) {
+                        alert((json).status);
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="b1" type="button" style="width: 100px;height: 100px">all</button>
+<button id="b2" type="button" style="width: 100px;height: 100px">reset</button>
+</body>
+</html>

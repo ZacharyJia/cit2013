@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CIT2013</title>
+    <style>
+        .block {
+            height: 50px;
+            width: 50px;
+            margin: 1px;
+            float: left;
+            display: inline-block
+        }
+        ul {
+            width: 2340px;
+            list-style-type:none;
+       }
+       .container {
+          display: flex;
+          flex-wrap: wrap;
+          width: 238px;
+          margin-top: 10px;
+        }
+       .cell {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 25px;
+          height: 25px;
+          border: 1px solid #aaa;
+          margin-right: -1px;
+          margin-bottom: -1px;
+        }
+        .cell:nth-child(3n) {
+          margin-right: 0;
+        }
+        .cell:nth-child(27n) {
+          margin-bottom: 0;
+        }
+        .cell-move {
+          transition: transform 2s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    <!-- <transition-group name="cell" tag="div" class="container">
+        <div v-for="cell in cells" :key="cell.id" class="cell">
+          {{ cell.number }}
+        </div>
+    </transition-group> -->
+        <!-- <ul v-for="(u, uu) in 15" :id="'ul-' + uu">
+            <li v-for="(l, ll) in 45" :id="uu + '-' + ll" class='block'>
+                    <img v-if="isUserBlock(uu ,ll)" :src="'http://image.cit2013.bigtomato.cn/' + getUser(uu, ll) + '.jpg?imageView2/1/w/50/h/50'" v-bind:style="{ position:'absolute', left:(50 * uu) + 'px', top:(50 * ll) + 'px' }">
+            </li>
+        </ul> -->
+        <transition-group name="cell" tag="div">
+            <div v-for="user in users" :key="user" class="block" v-bind:style="{ position:'absolute', left:(50 * getLeft(user)) + 'px', top:(50 * getTop(user)) + 'px' }">
+                <img v-if="isSignUp(user)" :src="'http://image.cit2013.bigtomato.cn/' + user + '.jpg?imageView2/1/w/50/h/50'" >
+            </div>
+        </transition-group>
+        
+    </div>
+</body>
+
+<script src="lodash.min.js"></script>
+<script src="vue.js"></script>
+<script src="vue-resource.js"></script>
+<script src="data.js"></script>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            datas: Data,
+            users: Users,
+            signup: {},
+            cells: Array.apply(null, { length: 81 })
+                .map(function (_, index) { 
+                return {
+                    id: index,
+                    number: index % 9 + 1
+                }
+              })
+        },
+        computed: {
+            
+        },
+        methods: {
+            isUserBlock: function(i, j) {
+                return (-1) != this.datas.indexOf(i + '-' + j);
+            },
+            getUser: function(i, j) {
+                index = this.datas.indexOf(i + '-' + j);
+                if (index == -1) {
+                    console.log('error is ' + i + '-' + j);
+                } else {
+                    if (index >= this.users.length) return this.users[1];
+                    else return this.users[index];
+                }
+            },
+            shuffle: function () {
+                this.users = _.shuffle(this.users)
+                this.cells = _.shuffle(this.cells)
+            },
+            getTop: function (user) {
+                index = this.users.indexOf(user);
+                return this.datas[index].match(/\d+/g)[0]
+            },
+            getLeft: function (user) {
+                index = this.users.indexOf(user);
+                return this.datas[index].match(/\d+/g)[1]
+            },
+            isSignUp: function(user) {
+                if (user in this.signup && this.signup['' + user]) {
+                    console.log(this.signup.user)
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        mounted: function() {
+            var self = this;
+            setInterval(function() {
+                // console.log("ok");
+                self.$http.get('http://cit2013.bigtomato.cn/checkin/status').then(response => {
+                    // get body data
+                    // console.log(response.body);
+                    self.signup = response.body;
+                    //this.someData = response.body;
+                    self.shuffle();
+                }, response => {
+                    // error callback
+                    console.log("error in http request");
+                });
+            }, 5000);
+        }
+
+    });
+
+
+
+</script>
+</html>
