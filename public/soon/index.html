@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Comming Soon</title>
+    <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="ie.css" type="text/css" charset="utf-8"/>
+    <script language="Javascript" type="text/javascript" src="js/jquery-1.4.4.js"></script>
+    <script language="Javascript" type="text/javascript" src="js/jquery.lwtCountdown-1.0.js"></script>
+    <script language="Javascript" type="text/javascript" src="js/misc.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="main">
+        <div id="countdown">
+            <!--<div class="soon" style="font-size: 50px;text-align: center;margin-bottom: 50px">-->
+                <!--Comming Soon-->
+            <!--</div>-->
+            <div class="dash days_dash">
+                <span class="dash_title">days</span>
+
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+            <div class="dash hours_dash">
+                <span class="dash_title">hours</span>
+
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+            <div class="dash minutes_dash">
+                <span class="dash_title">minutes</span>
+
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+            <div class="dash seconds_dash">
+                <span class="dash_title">seconds</span>
+
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+            </div>
+        </div>
+        <!-- end of countdown -->
+        <!-- end of bottom div -->
+    </div>
+    <!-- end of main -->
+    <!-- start of the javascript code that handles the countdown -->
+    <script language="javascript" type="text/javascript">
+        jQuery(document).ready(function () {
+            $('#countdown').countDown({
+                targetDate: {
+                    'day': 10,
+                    'month': 6,
+                    'year': 2017,
+                    'hour': 18,
+                    'min': 30,
+                    'sec': 0
+                }
+            });
+
+            $('#email_field').focus(email_focus).blur(email_blur);
+            $('#subscribe_form').bind('submit', function () {
+                return false;
+            });
+
+        });
+    </script>
+</div>
+<!-- end of wrapper -->
+
+</body>
+</html>

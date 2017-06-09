@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use DB;
 use Cache;
 
@@ -64,6 +65,12 @@ class CheckinController extends Controller
     }
 
     function user($id = null) {
+        $time = new Carbon("2017-6-10 18:30:00", "Asia/Shanghai");
+        if (Carbon::now("Asia/Shanghai") < $time) {
+            print Carbon::now("Asia/Shanghai");
+            return redirect('/soon/index.html');
+        }
+
         if ($id != null) {
             $user = User::find($id);
             if ($user != null) {
