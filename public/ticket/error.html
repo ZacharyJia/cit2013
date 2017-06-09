@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>邀请卡</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container" style="top: 150px;">
+        <h3 class="text-center">毕业晚会入场券</h3>
+        <form>
+          <div class="form-group">
+              <input id="hiddenText" type="text" style="display:none" />
+              <input type="text" class="form-control" id="stuno" v-model="stuno" placeholder="输入学号领取入场券">
+          </div>
+          <button type="button" v-on:click.stop.prevent="verify" class="btn btn-primary btn-block">获取入场券</button>
+
+        </form>
+        <br>
+        <div class="alert alert-danger" role="alert">
+            错误： <br>
+            入场券仅限2013级毕业生小伙伴领取呦~
+        </div>
+
+    </div>
+    <!-- <script src="js/jquery-3.1.1.slim.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+          el: '#app',
+          data: {
+            stuno: ''
+          },
+          methods: {
+            verify: function() {
+                var passTest = (/^\d{8}$/.test(this.stuno));
+                if (passTest) {
+                    window.location.href = "http://image.cit2013.bigtomato.cn/ticket/" + this.stuno + ".png";
+                } else {
+                    alert('你这学号不对啊，亲');
+                }
+            }
+          }
+        })
+    </script>
+</body>
+</html>
