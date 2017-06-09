@@ -3,7 +3,7 @@
  */
 
 //config
-var photos_link = 'photos.html';
+var photos_link = 'http://www.hixianchang.com/w/e0c1b0b6702f4704ba11f7ed9a935405/index.html';
 var programme_link = 'programme.html';
 //        var w_height = $(window).height() * 0.8;
 //        alert(w_height);

@@ -62,4 +62,25 @@ class CheckinController extends Controller
         Cache::forget(CheckinController::CACHE_KEY);
         return ['status' => 'success'];
     }
+
+    function user($id = null) {
+        if ($id != null) {
+            $user = User::find($id);
+            if ($user != null) {
+                $this->checkin($user->id);
+                return redirect('/mobile/user.html?id=' . $user->id . '&name=' . $user->name);
+            }
+        }
+        return redirect('/mobile/user.html');
+    }
+
+    function ticket($id = null) {
+        if ($id != null) {
+            $user = User::find($id);
+            if ($user != null) {
+                return view('ticket', ['id' => $user->id, 'name' => $user->name]);
+            }
+        }
+    }
+
 }
