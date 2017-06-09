@@ -16,4 +16,13 @@ class UserController extends Controller
         }
         return redirect('/mobile/user.html');
     }
+
+    function ticket($id = null) {
+        if ($id != null) {
+            $user = User::find($id);
+            if ($user != null) {
+                return view('ticket', ['id' => $user->id, 'name' => $user->name]);
+            }
+        }
+    }
 }

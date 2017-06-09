@@ -31,3 +31,5 @@ Route::group(['prefix' => '/checkin'], function() {
 Route::get('/user_list', 'SelectController@user_list');
 
 Route::get('/user/{id?}', 'UserController@user');
+
+Route::get('/ticket/{id}', 'UserController@ticket');

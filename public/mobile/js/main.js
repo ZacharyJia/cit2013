@@ -21,12 +21,12 @@ function welcome() {
     $(function () {
         $(".typed-element").typed({
             strings: [
-                "$^2000./login^500 " + id + "^500 " + name + "<br><br>" +
-                "欢迎来到^500计算机与信息技术学院2013级毕业晚会^1000<br><br>" +
-                "<a href=" + photos_link + ">微信墙&gt;&gt; 点击进入</a>^500<br>" +
+                "$^100./login^100 <br>" + id + "<br>^100 " + name + "<br><br>" +
+                "欢迎来到^100计算机与信息技术学院2013级毕业晚会^200<br><br>" +
+                "<a href=" + photos_link + ">微信墙&gt;&gt; 点击进入</a>^100<br>" +
                 "<a href=" + programme_link + ">节目单&gt;&gt; 点击进入</a>"
             ],
-            typeSpeed: 100,
+            typeSpeed: 50,
             startDelay: 100
         });
     });
