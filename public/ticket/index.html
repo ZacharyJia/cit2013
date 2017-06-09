@@ -8,15 +8,21 @@
 </head>
 <body>
     <div id="app" class="container" style="top: 150px;">
-        <h3>你有一张毕业晚会入场券待领取</h3>
+        <h3 class="text-center">毕业晚会入场券</h3>
         <form>
           <div class="form-group">
-            <label for="stuno">输入学号</label>
               <input id="hiddenText" type="text" style="display:none" />
-              <input type="text" class="form-control" id="stuno" v-model="stuno" placeholder="来不及了，快上车！">
+              <input type="text" class="form-control" id="stuno" v-model="stuno" placeholder="输入学号领取入场券">
           </div>
-          <button type="button" v-on:click.stop.prevent="verify" class="btn btn-primary">获取入场券</button>
+          <button type="button" v-on:click.stop.prevent="verify" class="btn btn-primary btn-block">获取入场券</button>
+
         </form>
+        <br>
+        <div class="alert alert-info" role="alert">
+            提示： <br>
+            仅限2013级毕业生领取，领取后请长按保存图片，于毕业晚会当晚6点30分后扫码签到。
+        </div>
+
     </div>
     <!-- <script src="js/jquery-3.1.1.slim.min.js"></script>
     <script src="js/tether.min.js"></script>
